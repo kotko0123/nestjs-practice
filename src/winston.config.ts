@@ -7,8 +7,8 @@ import {getTraceId} from "./trace-id.middleware";
 export const winstonLogger = WinstonModule.createLogger({
   level: 'info',
   format: winston.format.combine(
-    winston.format.errors({ stack: true }), // <-- use errors format
-    winston.format.timestamp(), // 로그 남긴 시각 표시
+    winston.format.errors({stack: true}), // <-- use errors format
+    winston.format.timestamp({format: 'YYYY-MM-dd HH:mm:ss'}), // 로그 남긴 시각 표시
     winston.format.colorize(),
     winston.format.printf(({timestamp, level, message, context}) => {
       const traceId = getTraceId() || 'no-trace-id';

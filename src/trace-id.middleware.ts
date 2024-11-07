@@ -18,6 +18,7 @@ export class TraceIdMiddleware implements NestMiddleware {
     });
   }
 }
+
 // Trace ID를 설정하는 함수
 function setTraceId(traceId: string) {
   namespace.set(TRACE_ID, traceId);
