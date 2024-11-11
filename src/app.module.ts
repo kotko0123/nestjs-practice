@@ -4,6 +4,7 @@ import {AppService} from './app.service';
 import {TraceIdMiddleware} from "./trace-id.middleware";
 import {APP_INTERCEPTOR} from "@nestjs/core";
 import {LoggingInterceptor} from "./logging.interceptor";
+import {RequestCountInterceptor} from "./request-count.interceptor";
 
 @Module({
   imports: [],
@@ -12,6 +13,10 @@ import {LoggingInterceptor} from "./logging.interceptor";
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: RequestCountInterceptor,
     },
   ],
 })

@@ -1,5 +1,6 @@
 import {Controller, Get, Logger} from '@nestjs/common';
 import {AppService} from './app.service';
+import {CommonUtil} from "./common.util";
 
 @Controller()
 export class AppController {
@@ -9,8 +10,9 @@ export class AppController {
   }
 
   @Get()
-  getHello(): string {
+  async getHello(): Promise<string> {
     this.logger.log('hello');
+    await CommonUtil.sleep(15000);
     return this.appService.getHello();
   }
 }

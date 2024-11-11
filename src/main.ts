@@ -8,9 +8,14 @@ async function bootstrap() {
     logger: winstonLogger,
   });
 
+  app.enableShutdownHooks();
+
   await app.listen(3000);
   Logger.log('app started.');
 
+  if (process.send) {
+    process.send('ready')
+  }
 }
 
 bootstrap();
