@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import {createNamespace} from 'cls-hooked';
 
 const REQUEST_CONTEXT = 'request-context';
-const TRACE_ID = 'traceId';
+const TRACE_ID = 'TRACE_ID';
 
 const namespace = createNamespace(REQUEST_CONTEXT);
 
@@ -12,7 +12,7 @@ export class TraceIdMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
     // 새로운 context 생성
     namespace.run(() => {
-      const traceId = req.get('x-tracer-id') || uuidv4();
+      const traceId = req.get('X-Tracer-Id') || uuidv4();
       setTraceId(traceId);
       next();
     });
